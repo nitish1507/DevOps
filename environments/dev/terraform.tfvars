@@ -3,6 +3,11 @@ rgn = {
     name     = "nir-rg1"
     location = "japaneast"
   }
+
+  rg2 = {
+    name     = "nir-rg2"
+    location = "japaneast"
+  }
 }
 vnet = {
   vnet1 = {
@@ -33,12 +38,6 @@ subnet = {
   }
   subnet4 = {
     name                 = "AzureBastionSubnet"
-    resource_group_name  = "nir-rg1"
-    virtual_network_name = "nir-vnet1"
-    address_prefixes     = ["10.0.4.0/26"]
-  }
-  subnet5 = {
-    name                 = "test-subnet"
     resource_group_name  = "nir-rg1"
     virtual_network_name = "nir-vnet1"
     address_prefixes     = ["10.0.4.0/26"]
