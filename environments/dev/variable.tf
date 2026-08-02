@@ -1,0 +1,10 @@
+variable "rgn" {}
+variable "vnet" {}
+variable "subnet" {}
+variable "pip" {}
+variable "machine" {}
+variable "nsg" {}
+variable "nsg_rules" {}
+variable "bastion" {}
+variable "keyvault" {}
+variable "loadbalancer" {}
