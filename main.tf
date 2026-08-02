@@ -11,8 +11,13 @@ terraform {
 provider "azurerm" {
   # Configuration options
 }
-resource "azurerm_resource_group" "example" {
-  name     = "example"
+resource "azurerm_resource_group" "navi" {
+  name     = "navi-rg"
+  location = "West Europe"
+}
+
+resource "azurerm_resource_group" "humana" {
+  name     = "humana-rg"
   location = "West Europe"
 }
 
