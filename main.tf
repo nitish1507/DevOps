@@ -18,6 +18,6 @@ resource "azurerm_resource_group" "navi" {
 
 resource "azurerm_resource_group" "humana" {
   name     = "humana-rg"
-  location = "West Europe"
+  location = "east us"
 }
 
