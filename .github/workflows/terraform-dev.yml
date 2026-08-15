@@ -6,6 +6,10 @@ on:
       - main
       - feature
 
+  pull_request:
+    branches:
+      - main
+
   workflow_dispatch:
 
 permissions:
@@ -23,14 +27,14 @@ jobs:
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
-        
+
       - name: Azure Login
         uses: azure/login@v2
         with:
           client-id: ${{ secrets.AZURE_CLIENT_ID }}
           tenant-id: ${{ secrets.AZURE_TENANT_ID }}
           subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
-          
+
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3
 
@@ -39,7 +43,10 @@ jobs:
 
       - name: Terraform Validate
         run: terraform validate
-      - name: Terraform plan
+
+      - name: Terraform Plan
         run: terraform plan
-      - name: Terraform apply
+
+      - name: Terraform Apply
+        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
         run: terraform apply -auto-approve
