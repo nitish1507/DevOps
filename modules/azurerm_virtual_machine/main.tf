@@ -15,7 +15,6 @@ resource "azurerm_network_interface" "nic" {
       name                          = each.value.ip_configuration_name
       subnet_id                     = data.azurerm_subnet.subnet[each.key].id
       private_ip_address_allocation = "Dynamic"
-      public_ip_address_id          = data.azurerm_public_ip.pip[each.key].id
     }
 }
 resource "azurerm_linux_virtual_machine" "vm" {
