@@ -33,21 +33,6 @@ subnet = {
     address_prefixes     = ["10.0.4.0/26"]
   }
 }
-pip = {
-  pip1 = {
-    name                = "git-pip1"
-    location            = "Central India"
-    resource_group_name = "git-rg1"
-    allocation_method   = "Static"
-    sku                 = "Standard"
-  }
-  pip2 = {
-    name                = "git-pip2"
-    location            = "Central India"
-    resource_group_name = "git-rg1"
-    allocation_method   = "Static"
-    sku                 = "Standard"
-  }
 
 }
 machine = {
@@ -60,7 +45,7 @@ machine = {
     admin_password        = "DevOps@12345"
     subnet_name           = "frontend-subnet"
     virtual_network_name  = "git-vnet1"
-    pip_name              = "git-pip1"
+    pip_name              = null
     nic_name              = "git-nic1"
     ip_configuration_name = "ipconfig1"
     image_publisher       = "Canonical"
@@ -76,7 +61,7 @@ machine = {
     admin_password        = "DevOps@12345"
     subnet_name           = "backend-subnet"
     virtual_network_name  = "git-vnet1"
-    pip_name              = "git-pip2"
+    pip_name              = null
     nic_name              = "git-nic2"
     ip_configuration_name = "ipconfig2"
     image_publisher       = "Canonical"
