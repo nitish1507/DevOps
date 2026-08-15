@@ -34,7 +34,7 @@ subnet = {
   }
 }
 
-}
+
 machine = {
   vm1 = {
     vm_name               = "frontend-vm"
