@@ -8,14 +8,6 @@ rgn = {
     name     = "git-rg2"
     location = "Central India"
   }
-   rg3 = {
-    name     = "git-rg3"
-    location = "Central India"
-  }
-   rg4 = {
-    name     = "git-rg4"
-    location = "Central India"
-  }
 }
 vnet = {
   vnet1 = {
