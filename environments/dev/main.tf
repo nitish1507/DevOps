@@ -15,14 +15,8 @@ module "subnet" {
   subnet     = var.subnet
 }
 
-module "public_ip" {
-  depends_on = [module.resource_group]
-  source     = "../../modules/azurerm_public_ip"
-  pip        = var.pip
-}
-
 module "virtual_machine" {
-  depends_on = [module.subnet, module.public_ip]
+  depends_on = [module.subnet]
   source     = "../../modules/azurerm_virtual_machine"
   machine    = var.machine
 }
