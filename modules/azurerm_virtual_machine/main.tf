@@ -5,11 +5,7 @@ data "azurerm_subnet" "subnet" {
     resource_group_name = each.value.resource_group_name
     virtual_network_name = each.value.virtual_network_name
 }
-data "azurerm_public_ip" "pip" {
-  for_each            = var.machine
-    name                = each.value.pip_name
-    resource_group_name = each.value.resource_group_name
-}
+
 resource "azurerm_network_interface" "nic" {
   for_each            = var.machine
     name                = each.value.nic_name
