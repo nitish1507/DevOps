@@ -1,67 +1,62 @@
 rgn = {
   rg1 = {
-    name     = "nir-rg1"
-    location = "japaneast"
-  }
-
-  rg2 = {
-    name     = "nir-rg2"
-    location = "japaneast"
+    name     = "git-rg1"
+    location = "Central India"
   }
 }
 vnet = {
   vnet1 = {
-    name                = "nir-vnet1"
+    name                = "git-vnet1"
     address_space       = ["10.0.0.0/16"]
-    location            = "japaneast"
-    resource_group_name = "nir-rg1"
+    location            = "Central India"
+    resource_group_name = "git-rg1"
   }
 }
 subnet = {
   subnet1 = {
     name                 = "frontend-subnet"
-    resource_group_name  = "nir-rg1"
-    virtual_network_name = "nir-vnet1"
+    resource_group_name  = "git-rg1"
+    virtual_network_name = "git-vnet1"
     address_prefixes     = ["10.0.1.0/24"]
   }
   subnet2 = {
     name                 = "backend-subnet"
-    resource_group_name  = "nir-rg1"
-    virtual_network_name = "nir-vnet1"
+    resource_group_name  = "git-rg1"
+    virtual_network_name = "git-vnet1"
     address_prefixes     = ["10.0.2.0/24"]
   }
   subnet3 = {
     name                 = "database-subnet"
-    resource_group_name  = "nir-rg1"
-    virtual_network_name = "nir-vnet1"
+    resource_group_name  = "git-rg1"
+    virtual_network_name = "git-vnet1"
     address_prefixes     = ["10.0.3.0/24"]
   }
   subnet4 = {
     name                 = "AzureBastionSubnet"
-    resource_group_name  = "nir-rg1"
-    virtual_network_name = "nir-vnet1"
+    resource_group_name  = "git-rg1"
+    virtual_network_name = "git-vnet1"
     address_prefixes     = ["10.0.4.0/26"]
   }
 }
 pip = {
   pip1 = {
-    name                = "nir-pip1"
-    location            = "japaneast"
-    resource_group_name = "nir-rg1"
+    name                = "git-pip1"
+    location            = "Central India"
+    resource_group_name = "git-rg1"
     allocation_method   = "Static"
     sku                 = "Standard"
   }
   pip2 = {
-    name                = "nir-pip2"
-    location            = "japaneast"
-    resource_group_name = "nir-rg1"
+    name                = "git-pip2"
+    location            = "Central India"
+    resource_group_name = "git-rg1"
     allocation_method   = "Static"
     sku                 = "Standard"
   }
   pip3 = {
-    name                = "nir-pip3"
-    location            = "japaneast"
-    resource_group_name = "nir-rg1"
+    name                = "git-pip3"
+    location            = "Central India"
+    resource_group_name = "git-rg1"
     allocation_method   = "Static"
     sku                 = "Standard"
   }
@@ -69,15 +64,15 @@ pip = {
 machine = {
   vm1 = {
     vm_name               = "frontend-vm"
-    location              = "japaneast"
-    resource_group_name   = "nir-rg1"
-    size                  = "Standard_D2s_v3"
+    location              = "Central India"
+    resource_group_name   = "git-rg1"
+    size                  = "Standard_D2ads_v5"
     admin_username        = "azureuser"
     admin_password        = "DevOps@12345"
     subnet_name           = "frontend-subnet"
-    virtual_network_name  = "nir-vnet1"
-    pip_name              = "nir-pip1"
-    nic_name              = "nir-nic1"
+    virtual_network_name  = "git-vnet1"
+    pip_name              = "git-pip1"
+    nic_name              = "git-nic1"
     ip_configuration_name = "ipconfig1"
     image_publisher       = "Canonical"
     image_offer           = "UbuntuServer"
@@ -85,15 +80,15 @@ machine = {
   }
   vm2 = {
     vm_name               = "backend-vm"
-    location              = "japaneast"
-    resource_group_name   = "nir-rg1"
-    size                  = "Standard_D2s_v3"
+    location              = "Central India"
+    resource_group_name   = "git-rg1"
+    size                  = "Standard_D2ads_v5"
     admin_username        = "azureuser"
     admin_password        = "DevOps@12345"
     subnet_name           = "backend-subnet"
-    virtual_network_name  = "nir-vnet1"
-    pip_name              = "nir-pip2"
-    nic_name              = "nir-nic2"
+    virtual_network_name  = "git-vnet1"
+    pip_name              = "git-pip2"
+    nic_name              = "git-nic2"
     ip_configuration_name = "ipconfig2"
     image_publisher       = "Canonical"
     image_offer           = "UbuntuServer"
@@ -101,15 +96,15 @@ machine = {
   }
   vm3 = {
     vm_name               = "database-vm"
-    location              = "japaneast"
-    resource_group_name   = "nir-rg1"
-    size                  = "Standard_D2s_v3"
+    location              = "Central India"
+    resource_group_name   = "git-rg1"
+    size                  = "Standard_D2ads_v5"
     admin_username        = "azureuser"
     admin_password        = "DevOps@12345"
     subnet_name           = "database-subnet"
-    virtual_network_name  = "nir-vnet1"
-    pip_name              = "nir-pip3"
-    nic_name              = "nir-nic3"
+    virtual_network_name  = "git-vnet1"
+    pip_name              = "git-pip3"
+    nic_name              = "git-nic3"
     ip_configuration_name = "ipconfig3"
     image_publisher       = "Canonical"
     image_offer           = "UbuntuServer"
@@ -121,20 +116,20 @@ nsg = {
 
   nsg1 = {
     name                = "frontend-nsg"
-    location            = "japaneast"
-    resource_group_name = "nir-rg1"
+    location            = "Central India"
+    resource_group_name = "git-rg1"
   }
 
   nsg2 = {
     name                = "backend-nsg"
-    location            = "japaneast"
-    resource_group_name = "nir-rg1"
+    location            = "Central India"
+    resource_group_name = "git-rg1"
   }
 
   nsg3 = {
     name                = "database-nsg"
-    location            = "japaneast"
-    resource_group_name = "nir-rg1"
+    location            = "Central India"
+    resource_group_name = "git-rg1"
   }
 
 }
@@ -155,7 +150,7 @@ nsg_rules = {
     source_address_prefix      = "*"
     destination_address_prefix = "*"
 
-    resource_group_name = "nir-rg1"
+    resource_group_name = "git-rg1"
 
     nsg_key = "nsg1"
 
@@ -164,12 +159,12 @@ nsg_rules = {
 }
 bastion = {
   bastion1 = {
-    name                 = "nir-bastion"
-    public_ip_name       = "nir-bastion-pip"
-    location             = "japaneast"
-    resource_group_name  = "nir-rg1"
+    name                 = "git-bastion"
+    public_ip_name       = "git-bastion-pip"
+    location             = "Central India"
+    resource_group_name  = "git-rg1"
     subnet_name          = "AzureBastionSubnet"
-    virtual_network_name = "nir-vnet1"
+    virtual_network_name = "git-vnet1"
   }
 
 }
@@ -177,9 +172,9 @@ bastion = {
 keyvault = {
 
   kv1 = {
-    name                = "nirkeyvault2026nitish"
-    location            = "japaneast"
-    resource_group_name = "nir-rg1"
+    name                = "gitkeyvault2026nitish"
+    location            = "Central India"
+    resource_group_name = "git-rg1"
   }
 
 }
@@ -188,11 +183,11 @@ keyvault = {
 loadbalancer = {
 
   lb1 = {
-    name                  = "nir-lb"
-    public_ip_name        = "nir-lb-pip"
-    location              = "japaneast"
-    resource_group_name   = "nir-rg1"
-    nic_name              = "nir-nic1"
+    name                  = "git-lb"
+    public_ip_name        = "git-lb-pip"
+    location              = "Central India"
+    resource_group_name   = "git-rg1"
+    nic_name              = "git-nic1"
     ip_configuration_name = "ipconfig1"
   }
 
