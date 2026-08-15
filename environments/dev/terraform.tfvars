@@ -25,13 +25,8 @@ subnet = {
     virtual_network_name = "git-vnet1"
     address_prefixes     = ["10.0.2.0/24"]
   }
+
   subnet3 = {
-    name                 = "database-subnet"
-    resource_group_name  = "git-rg1"
-    virtual_network_name = "git-vnet1"
-    address_prefixes     = ["10.0.3.0/24"]
-  }
-  subnet4 = {
     name                 = "AzureBastionSubnet"
     resource_group_name  = "git-rg1"
     virtual_network_name = "git-vnet1"
@@ -53,13 +48,7 @@ pip = {
     allocation_method   = "Static"
     sku                 = "Standard"
   }
-  pip3 = {
-    name                = "git-pip3"
-    location            = "Central India"
-    resource_group_name = "git-rg1"
-    allocation_method   = "Static"
-    sku                 = "Standard"
-  }
+
 }
 machine = {
   vm1 = {
@@ -94,22 +83,7 @@ machine = {
     image_offer           = "UbuntuServer"
     image_sku             = "18.04-LTS"
   }
-  vm3 = {
-    vm_name               = "database-vm"
-    location              = "Central India"
-    resource_group_name   = "git-rg1"
-    size                  = "Standard_D2ads_v5"
-    admin_username        = "azureuser"
-    admin_password        = "DevOps@12345"
-    subnet_name           = "database-subnet"
-    virtual_network_name  = "git-vnet1"
-    pip_name              = "git-pip3"
-    nic_name              = "git-nic3"
-    ip_configuration_name = "ipconfig3"
-    image_publisher       = "Canonical"
-    image_offer           = "UbuntuServer"
-    image_sku             = "18.04-LTS"
-  }
+
 }
 
 nsg = {
@@ -126,11 +100,6 @@ nsg = {
     resource_group_name = "git-rg1"
   }
 
-  nsg3 = {
-    name                = "database-nsg"
-    location            = "Central India"
-    resource_group_name = "git-rg1"
-  }
 
 }
 
