@@ -41,16 +41,16 @@ jobs:
           Write-Host "=== AZURE ACCOUNT ==="
           az account show
 
-      - name: Setup Terraform
-        uses: hashicorp/setup-terraform@v3
-
       - name: Check Terraform
         shell: powershell
         run: |
+          Write-Host "=== TERRAFORM PATH ==="
+          where.exe terraform
+
           Write-Host "=== TERRAFORM VERSION ==="
           terraform version
 
-      - name: Check Working Directory
+      - name: Check Terraform Files
         shell: powershell
         run: |
           Write-Host "=== CURRENT DIRECTORY ==="
@@ -74,13 +74,11 @@ jobs:
       - name: Terraform Plan
         shell: powershell
         run: |
-          Write-Host "=== TERRAFORM PLAN START ==="
+          Write-Host "=== TERRAFORM PLAN ==="
           terraform plan -no-color
-          Write-Host "=== TERRAFORM PLAN END ==="
 
-      # Apply temporarily disabled
-      # - name: Terraform Apply
-      #   shell: powershell
-      #   run: |
-      #     Write-Host "=== TERRAFORM APPLY ==="
-      #     terraform apply -auto-approve -no-color
+      - name: Terraform Apply
+        shell: powershell
+        run: |
+          Write-Host "=== TERRAFORM APPLY ==="
+          terraform apply -auto-approve -no-color
