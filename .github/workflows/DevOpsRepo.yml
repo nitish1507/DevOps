@@ -38,41 +38,49 @@ jobs:
       - name: Check Azure Account
         shell: powershell
         run: |
+          Write-Host "=== AZURE ACCOUNT ==="
           az account show
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3
 
-      - name: Check Terraform Version
+      - name: Check Terraform
         shell: powershell
         run: |
+          Write-Host "=== TERRAFORM VERSION ==="
           terraform version
 
-      - name: Check Terraform Files
+      - name: Check Working Directory
         shell: powershell
         run: |
-          Write-Host "Current Directory:"
+          Write-Host "=== CURRENT DIRECTORY ==="
           Get-Location
 
-          Write-Host "`nTerraform Files:"
+          Write-Host "=== TERRAFORM FILES ==="
           Get-ChildItem -Filter *.tf
 
       - name: Terraform Init
         shell: powershell
         run: |
+          Write-Host "=== TERRAFORM INIT ==="
           terraform init
 
       - name: Terraform Validate
         shell: powershell
         run: |
+          Write-Host "=== TERRAFORM VALIDATE ==="
           terraform validate
 
       - name: Terraform Plan
         shell: powershell
         run: |
+          Write-Host "=== TERRAFORM PLAN START ==="
           terraform plan -no-color
+          Write-Host "=== TERRAFORM PLAN END ==="
 
-      - name: Terraform Apply
-        shell: powershell
-        run: |
-          terraform apply -auto-approve -no-color
+      # Apply temporarily disabled
+      # - name: Terraform Apply
+      #   shell: powershell
+      #   run: |
+      #     Write-Host "=== TERRAFORM APPLY ==="
+      #     terraform apply -auto-approve -no-color
