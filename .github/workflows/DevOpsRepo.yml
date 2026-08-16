@@ -34,30 +34,6 @@ jobs:
           Write-Host "AZURE CLI VERSION"
           az version
 
-      - name: Check Azure Login
-        run: |
-          Write-Host "CURRENT WINDOWS USER"
-          whoami
-
-          Write-Host "AZURE ACCOUNT"
-          az account show --output table
-
-      - name: Check Terraform
-        run: |
-          Write-Host "TERRAFORM PATH"
-          where.exe terraform
-
-          Write-Host "TERRAFORM VERSION"
-          terraform version
-
-      - name: Check Terraform Files
-        run: |
-          Write-Host "CURRENT DIRECTORY"
-          Get-Location
-
-          Write-Host "TERRAFORM FILES"
-          Get-ChildItem -Path . -Filter *.tf
-
       - name: Terraform Init
         run: |
           Write-Host "TERRAFORM INIT"
