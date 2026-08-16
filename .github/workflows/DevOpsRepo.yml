@@ -14,7 +14,7 @@ permissions:
 
 jobs:
   terraform:
-    name: Terraform Deployment
+    name: Terraform self hosted runner Deployment
     runs-on:
       - self-hosted
       - windows
