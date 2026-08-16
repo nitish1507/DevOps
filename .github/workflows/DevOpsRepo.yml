@@ -1,4 +1,4 @@
-name: DevOps Repo
+name: Terraform Dev
 
 on:
   push:
@@ -18,7 +18,7 @@ permissions:
 
 jobs:
   terraform:
-    runs-on: [self-hosted, Windows, X64]
+    runs-on: [self-hosted, windows, x64]
 
     defaults:
       run:
@@ -35,17 +35,44 @@ jobs:
           tenant-id: ${{ secrets.AZURE_TENANT_ID }}
           subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
 
+      - name: Check Azure Account
+        shell: powershell
+        run: |
+          az account show
+
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3
 
+      - name: Check Terraform Version
+        shell: powershell
+        run: |
+          terraform version
+
+      - name: Check Terraform Files
+        shell: powershell
+        run: |
+          Write-Host "Current Directory:"
+          Get-Location
+
+          Write-Host "`nTerraform Files:"
+          Get-ChildItem -Filter *.tf
+
       - name: Terraform Init
-        run: terraform init
+        shell: powershell
+        run: |
+          terraform init
 
       - name: Terraform Validate
-        run: terraform validate
+        shell: powershell
+        run: |
+          terraform validate
 
       - name: Terraform Plan
-        run: terraform plan
+        shell: powershell
+        run: |
+          terraform plan -no-color
 
       - name: Terraform Apply
-        run: terraform apply -auto-approve
+        shell: powershell
+        run: |
+          terraform apply -auto-approve -no-color
