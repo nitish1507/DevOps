@@ -1,4 +1,4 @@
-name: Terraform Dev
+name: Terraform self hosted runner Deployment
 
 on:
   push:
@@ -10,75 +10,69 @@ on:
     branches:
       - main
 
-  workflow_dispatch:
-
 permissions:
   contents: read
-  id-token: write
 
 jobs:
   terraform:
+    name: Terraform Deployment
     runs-on: [self-hosted, windows, x64]
 
     defaults:
       run:
+        shell: powershell
         working-directory: ./environments/dev
 
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
 
-      - name: Azure Login
-        uses: azure/login@v2
-        with:
-          client-id: ${{ secrets.AZURE_CLIENT_ID }}
-          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
-          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
-
-      - name: Check Azure Account
-        shell: powershell
+      - name: Check Azure CLI
         run: |
-          Write-Host "=== AZURE ACCOUNT ==="
-          az account show
+          Write-Host "AZURE CLI VERSION"
+          az version
+
+      - name: Check Azure Login
+        run: |
+          Write-Host "CURRENT WINDOWS USER"
+          whoami
+
+          Write-Host "AZURE ACCOUNT"
+          az account show --output table
 
       - name: Check Terraform
-        shell: powershell
         run: |
-          Write-Host "=== TERRAFORM PATH ==="
+          Write-Host "TERRAFORM PATH"
           where.exe terraform
 
-          Write-Host "=== TERRAFORM VERSION ==="
+          Write-Host "TERRAFORM VERSION"
           terraform version
 
       - name: Check Terraform Files
-        shell: powershell
         run: |
-          Write-Host "=== CURRENT DIRECTORY ==="
+          Write-Host "CURRENT DIRECTORY"
           Get-Location
 
-          Write-Host "=== TERRAFORM FILES ==="
-          Get-ChildItem -Filter *.tf
+          Write-Host "TERRAFORM FILES"
+          Get-ChildItem -Path . -Filter *.tf
 
       - name: Terraform Init
-        shell: powershell
         run: |
-          Write-Host "=== TERRAFORM INIT ==="
+          Write-Host "TERRAFORM INIT"
           terraform init
 
       - name: Terraform Validate
-        shell: powershell
         run: |
-          Write-Host "=== TERRAFORM VALIDATE ==="
+          Write-Host "TERRAFORM VALIDATE"
           terraform validate
 
       - name: Terraform Plan
-        shell: powershell
         run: |
-          Write-Host "=== TERRAFORM PLAN ==="
+          Write-Host "TERRAFORM PLAN"
           terraform plan -no-color
 
       - name: Terraform Apply
-        shell: powershell
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         run: |
-          Write-Host "=== TERRAFORM APPLY ==="
-          terraform apply -auto-approve -no-color
+          Write-Host "TERRAFORM APPLY"
+          terraform apply -auto-approve
